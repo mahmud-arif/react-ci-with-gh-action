@@ -1,5 +1,7 @@
 name: Deployment Exercise 
-on: push
+on: 
+#  - push
+ - workflow_dispatch
 jobs:
   lint:
     runs-on: ubuntu-latest

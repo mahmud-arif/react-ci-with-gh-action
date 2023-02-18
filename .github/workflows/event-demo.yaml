@@ -1,0 +1,23 @@
+name: Event demo 
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output event data
+        run: echo "${{toJSON(github.event)}}"
+      - name: get code
+        uses: actions/checkout@v3
+      - name: Install dependency
+        run: npm ci
+      - name: Test Code
+        run: npm run test
+      - name: build code
+        run: npm run build
+      - name: deploy project
+        run: echo "deploying..."
