@@ -10,7 +10,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        id: cache-hit
+        id: cache
         uses: actions/cache@v3
         with:
           path: node_modules
@@ -26,7 +26,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        id: cache-hit
+        id: cache
         uses: actions/cache@v3
         with:
           path: node_modules
@@ -39,7 +39,7 @@ jobs:
         run: npm run test
       - name: Upload test report
         # continue-on-error: true
-        if: failure() && steps.run-test == 'failure'
+        if: failure() && steps.run-test.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: test-report
@@ -51,7 +51,7 @@ jobs:
       - name: Get code
         uses: actions/checkout@v3
       - name: Cache dependencies
-        id: cache-hit
+        id: cache
         uses: actions/cache@v3
         with:
           path: node_modules
